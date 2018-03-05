@@ -1,0 +1,17 @@
+[gd_resource type="VoxelProviderTest" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = ""
+_sections_unfolded = [ "Resource" ]
+
+[resource]
+
+resource_local_to_scene = true
+mode = 1
+voxel_type = 1
+pattern_size = Vector3( 10, 10, 10 )
+pattern_offset = Vector3( 0, 0, 0 )
+script = SubResource( 1 )
+_sections_unfolded = [ "Resource" ]
+

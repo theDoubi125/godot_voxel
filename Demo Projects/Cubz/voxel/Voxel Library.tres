@@ -1,0 +1,32 @@
+[gd_resource type="VoxelLibrary" load_steps=3 format=2]
+
+[sub_resource type="Voxel" id=1]
+
+voxel_name = ""
+color = Color( 1, 1, 1, 1 )
+transparent = true
+material_id = 0
+geometry_type = 0
+
+[sub_resource type="Voxel" id=2]
+
+voxel_name = ""
+color = Color( 1, 1, 1, 1 )
+transparent = false
+material_id = 0
+geometry_type = 1
+cube_geometry/padding_y = 0.0
+cube_tiles/left = null
+cube_tiles/right = null
+cube_tiles/bottom = null
+cube_tiles/top = null
+cube_tiles/back = null
+cube_tiles/front = null
+
+[resource]
+
+atlas_size = 1
+voxels/0 = SubResource( 1 )
+voxels/1 = SubResource( 2 )
+_sections_unfolded = [ "voxels" ]
+
