@@ -4,7 +4,7 @@
 #include <resource.h>
 #include "voxel_buffer.h"
 
-class VoxelProvider : public Resource {
+class VoxelProvider : public Resource{
 	GDCLASS(VoxelProvider, Resource)
 public:
 	virtual void emerge_block(Ref<VoxelBuffer> out_buffer, Vector3i origin_in_voxels);

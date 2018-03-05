@@ -400,29 +400,36 @@ void VoxelTerrain::update_blocks() {
 		if(prev_box != new_box) {
 			//print_line(String("Loaded area changed: from ") + prev_box.to_string() + String(" to ") + new_box.to_string());
 
-			Rect3i bounds = Rect3i::get_bounding_box(prev_box, new_box);
-			Vector3i max = bounds.pos + bounds.size;
-
-			// TODO There should be a way to only iterate relevant blocks
-			Vector3i pos;
-			for(pos.z = bounds.pos.z; pos.z < max.z; ++pos.z) {
-				for(pos.y = bounds.pos.y; pos.y < max.y; ++pos.y) {
-					for(pos.x = bounds.pos.x; pos.x < max.x; ++pos.x) {
-
-						bool prev_contains = prev_box.contains(pos);
-						bool new_contains = new_box.contains(pos);
-
-						if(prev_contains && !new_contains) {
-							// Unload block
-							immerge_block(pos);
-
-						} else if(!prev_contains && new_contains) {
-							// Load or update block
-							make_block_dirty(pos);
+			Vector3 pos;
+			Vector<Rect3i> bounds_to_immerge = difference(prev_box, new_box);
+			for (int i = 0; i < bounds_to_immerge.size(); i++)
+			{
+				Rect3i bounds = bounds_to_immerge[i];
+				for (int i = 0; i < bounds.size.x; i++) {
+					for (int j = 0; j < bounds.size.y; j++) {
+						for (int k = 0; k < bounds.size.z; k++) {
+								immerge_block(bounds.pos + Vector3i(i, j, k));
 						}
 					}
 				}
 			}
+			Vector<Rect3i> bounds_to_emerge = difference(new_box, prev_box);
+			for (int i = 0; i < bounds_to_emerge.size(); i++)
+			{
+				Rect3i bounds = bounds_to_emerge[i];
+				for (int i = 0; i < bounds.size.x; i++) {
+					for (int j = 0; j < bounds.size.y; j++) {
+						for (int k = 0; k < bounds.size.z; k++) {
+							make_block_dirty(bounds.pos + Vector3i(i, j, k));
+						}
+					}
+				}
+			}
+
+			// Find elements in the new that was not in the old
+
+			// TODO There should be a way to only iterate relevant blocks
+			
 		}
 
 		// Eliminate blocks in queue that aren't needed

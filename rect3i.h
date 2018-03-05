@@ -1,6 +1,7 @@
 #ifndef RECT3I_H
 #define RECT3I_H
 
+#include "variant.h"
 #include "vector3i.h"
 //#include <math_funcs.h>
 
@@ -58,5 +59,6 @@ public:
 inline bool operator!=(const Rect3i & a, const Rect3i & b) {
 	return a.pos != b.pos || a.size != b.size;
 }
+Vector<Rect3i> difference(Rect3i A, Rect3i B);
 
 #endif // RECT3I_H

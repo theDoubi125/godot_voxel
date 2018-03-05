@@ -8,8 +8,8 @@
 #include <scene/main/node.h>
 
 // Infinite voxel storage by means of octants like Gridmap
-class VoxelMap : public Reference {
-	GDCLASS(VoxelMap, Reference)
+class VoxelMap : public Resource {
+	GDCLASS(VoxelMap, Resource)
 public:
 	// Converts voxel coodinates into block coordinates
 	_FORCE_INLINE_ Vector3i voxel_to_block(Vector3i pos) const {
